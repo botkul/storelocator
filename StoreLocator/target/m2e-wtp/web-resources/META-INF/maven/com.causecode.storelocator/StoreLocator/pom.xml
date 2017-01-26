@@ -1,0 +1,121 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.causecode.storelocator</groupId>
+    <artifactId>StoreLocator</artifactId>
+    <packaging>war</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>StoreLocator</name>
+    
+    <properties>
+        <jersey.version>2.14</jersey.version>
+        <spring.version>4.1.0.RELEASE</spring.version>
+    	<hibernate.version>4.3.6.Final</hibernate.version>
+    	<mysql.version>5.1.32</mysql.version>
+    	<apachedbcp.version>1.2.2</apachedbcp.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
+    <build>
+        <finalName>StoreLocator</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>	
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+            <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
+            <!-- artifactId>jersey-container-servlet</artifactId -->
+        </dependency>
+        
+        <!-- JSON support-->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-moxy</artifactId>
+        </dependency>
+        
+        <!-- Jersey extension module providing support for Spring 3 integration -->
+	    <dependency>
+	        <groupId>org.glassfish.jersey.ext</groupId>
+	        <artifactId>jersey-spring3</artifactId>
+	        <version>${jersey.version}</version>
+	        <exclusions>
+	            <exclusion>
+	                <groupId>org.springframework</groupId>
+	                <artifactId>spring-core</artifactId>
+	            </exclusion>
+	            <exclusion>
+	                <groupId>org.springframework</groupId>
+	                <artifactId>spring-web</artifactId>
+	            </exclusion>
+	            <exclusion>
+	                <groupId>org.springframework</groupId>
+	                <artifactId>spring-beans</artifactId>
+	            </exclusion>
+	        </exclusions>
+	    </dependency>
+	    
+	    <!-- Spring Framework-4.x -->
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-webmvc</artifactId>
+	        <version>${spring.version}</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-orm</artifactId>
+	        <version>${spring.version}</version>
+	    </dependency>
+	 
+	    <!-- Hibernate Core 4.2.x -->
+	    <dependency>
+	        <groupId>org.hibernate</groupId>
+	        <artifactId>hibernate-core</artifactId>
+	        <version>${hibernate.version}</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.hibernate</groupId>
+	        <artifactId>hibernate-ehcache</artifactId>
+	        <version>${hibernate.version}</version>
+	    </dependency>
+	 
+	    <!-- MySql-Connector -->
+	    <dependency>
+	        <groupId>mysql</groupId>
+	        <artifactId>mysql-connector-java</artifactId>
+	        <version>${mysql.version}</version>
+	    </dependency>
+	    
+	    <!-- Commons DBCP 1.2.2 -->
+		<dependency>
+		    <groupId>commons-dbcp</groupId>
+		    <artifactId>commons-dbcp</artifactId>
+		    <version>${apachedbcp.version}</version>
+		</dependency>
+    </dependencies>
+</project>
